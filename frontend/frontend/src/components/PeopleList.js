@@ -3,9 +3,9 @@ const PeopleList = ({people, toggle, prevPeople}) => {
 
     return (
 
-        <div className="">
+        <div>
             {people && people.map((person, i) => (
-                <div key={person.id}>
+                <div key={person.id} class="fixed inset-x-0 font-extrabold">
                     {i > 0 ? <h2>{person.name} is even more awesome than {prevPeople[i-1]["name"]}</h2> : <h2>{person.name} is awesome</h2> }
                 </div>
             ))}

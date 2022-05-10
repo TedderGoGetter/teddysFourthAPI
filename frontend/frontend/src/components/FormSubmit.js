@@ -63,21 +63,26 @@ function FormSubmit() {
         <div>
             <TierList people={people}/>
 
-            <div className="place-content-center">
+            <div class="text-center">
                 <PeopleList people={people} toggle={incrementer} prevPeople={prevPeople}/>
                 
 
 
 
-                <form className="form" onSubmit={handleSubmit}>
+                <form className="fixed bottom-0 text-center inset-x-0 m-60 bg-gray-600" onSubmit={handleSubmit}>
+                    <br></br>
                     <label>Is there someone even more awesome?</label>
+
+                    <br></br>
+
                     <input 
                         type="text" 
                         required
                         value={name}
                         onChange={(e) => setName(e.target.value)} // sets name to whatever we type as we type it
                     ></input>
-                    <button onClick={toggleFunc}>Submit</button>
+                    <br></br>
+                    <button class="bg-orange-800 rounded" onClick={toggleFunc}>Submit</button>
                     <p>{name}</p>
                 </form>
 
