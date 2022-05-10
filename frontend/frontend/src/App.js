@@ -1,10 +1,8 @@
-import logo from './logo.svg';
-import './App.css';
 import FormSubmit from './components/FormSubmit';
 
 function App() {
   return (
-    <div className="App">
+    <div className="w-screen h-screen bg-orange-300">
       <header className="App-header">
         <FormSubmit />
 

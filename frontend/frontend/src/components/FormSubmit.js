@@ -61,27 +61,30 @@ function FormSubmit() {
 
     return (
         <div>
-            <PeopleList people={people} toggle={incrementer} prevPeople={prevPeople}/>
-            
-
-
-
-            <form className="form" onSubmit={handleSubmit}>
-                <label>Is there someone even more awesome?</label>
-                <input 
-                    type="text" 
-                    required
-                    value={name}
-                    onChange={(e) => setName(e.target.value)} // sets name to whatever we type as we type it
-                ></input>
-                <button onClick={toggleFunc}>Submit</button>
-                <p>{name}</p>
-            </form>
-
-
-
-
             <TierList people={people}/>
+
+            <div className="place-content-center">
+                <PeopleList people={people} toggle={incrementer} prevPeople={prevPeople}/>
+                
+
+
+
+                <form className="form" onSubmit={handleSubmit}>
+                    <label>Is there someone even more awesome?</label>
+                    <input 
+                        type="text" 
+                        required
+                        value={name}
+                        onChange={(e) => setName(e.target.value)} // sets name to whatever we type as we type it
+                    ></input>
+                    <button onClick={toggleFunc}>Submit</button>
+                    <p>{name}</p>
+                </form>
+
+
+
+            </div>
+
         </div>
 
         

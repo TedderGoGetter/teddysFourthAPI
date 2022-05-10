@@ -11,7 +11,7 @@ const TierList = ({people}) => {
 
     return (
         
-        <div>
+        <div className="fixed">
             <p>Rankings:</p>
             {revPeople &&
             revPeople.map((person, i) => (
