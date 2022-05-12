@@ -2,18 +2,12 @@ import React from "react";
 import {useState, useEffect } from 'react'
 import PeopleList from "./PeopleList"
 import TierList from "./TierList"
-import Confetti from 'react-confetti'
 
 function FormSubmit() {
 
     
     const [people, setPeople] = useState([])
     const [prevPeople, setPrevPeople] = useState([])
-
-
-    //Using this one to increase the font size every submit. Would it make more sense to increase for every item in database?
-    const [fontSize, setFontSize] = useState(16)
-
 
     useEffect(() => {  // this is how you make a proper get request
         fetch('http://localhost:8000/people')
@@ -23,17 +17,19 @@ function FormSubmit() {
             .then((data) => {   //converting it also takes some time and so that also gives you a promise, hence the second .then. the data is the actual data you finally end up using.
                 setPeople(data)
                 setPrevPeople(data)
-               // console.log('prev is ', prevPeople)
-               // console.log('people is ', people)
+                // console.log('prev is ', prevPeople)
+                // console.log('people is ', people)
             })
     }, [])
 
 
     const [name, setName] = useState('')
+
+    const [fontSize, setFontSize] = useState(16)
   
 
     const handleSubmit = (e) => {
-       e.preventDefault()  // this prevents the form from resetting after a submit
+        e.preventDefault()  // this prevents the form from resetting after a submit
         
 
         const sendOut = {name}
@@ -62,12 +58,14 @@ function FormSubmit() {
 
     }
 
+
+
     return (
         <div>
             <TierList people={people}/>
 
             <div class="text-center">
-                <PeopleList people={people} prevPeople={prevPeople} fontSize={fontSize}/>
+            <PeopleList people={people} prevPeople={prevPeople} fontSize={fontSize}/>
                 
 
 
@@ -86,13 +84,6 @@ function FormSubmit() {
                     ></input>
                     <br></br>
                     <button class="bg-orange-800 rounded">Submit</button>
-                    <Confetti
-                        width={50}
-                        height={50}
-                        numberOfPieces={20}
-                        run={false}
-                    />
-                    
                 </form>
 
 
