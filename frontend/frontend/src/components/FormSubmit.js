@@ -4,7 +4,6 @@ import PeopleList from "./PeopleList"
 import TierList from "./TierList"
 
 function FormSubmit() {
-
     
     const [people, setPeople] = useState([])
     const [prevPeople, setPrevPeople] = useState([])
@@ -66,8 +65,6 @@ function FormSubmit() {
 
             <div class="text-center">
             <PeopleList people={people} prevPeople={prevPeople} fontSize={fontSize}/>
-                
-
 
 
                 <form className="fixed bottom-0 text-center inset-x-0 m-60 bg-gray-600" onSubmit={handleSubmit}>
@@ -85,6 +82,8 @@ function FormSubmit() {
                     <br></br>
                     <button class="bg-orange-800 rounded">Submit</button>
                 </form>
+
+                
 
 
 
