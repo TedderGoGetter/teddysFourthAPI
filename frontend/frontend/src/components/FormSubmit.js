@@ -2,6 +2,7 @@ import React from "react";
 import {useState, useEffect } from 'react'
 import PeopleList from "./PeopleList"
 import TierList from "./TierList"
+import Confetti from 'react-confetti'
 
 function FormSubmit() {
 
@@ -54,9 +55,10 @@ function FormSubmit() {
             })
         })
 
-        //make it biggerrrr
+        //make it biggerrrr give it confetterrr
         setFontSize(fontSize + 5)
         console.log(fontSize)
+
 
     }
 
@@ -84,6 +86,12 @@ function FormSubmit() {
                     ></input>
                     <br></br>
                     <button class="bg-orange-800 rounded">Submit</button>
+                    <Confetti
+                        width={50}
+                        height={50}
+                        numberOfPieces={20}
+                        run={false}
+                    />
                     
                 </form>
 
