@@ -9,6 +9,11 @@ function FormSubmit() {
     const [people, setPeople] = useState([])
     const [prevPeople, setPrevPeople] = useState([])
 
+
+    //Using this one to increase the font size every submit. Would it make more sense to increase for every item in database?
+    const [fontSize, setFontSize] = useState(16)
+
+
     useEffect(() => {  // this is how you make a proper get request
         fetch('http://localhost:8000/people')
             .then(res => {
@@ -17,8 +22,8 @@ function FormSubmit() {
             .then((data) => {   //converting it also takes some time and so that also gives you a promise, hence the second .then. the data is the actual data you finally end up using.
                 setPeople(data)
                 setPrevPeople(data)
-                console.log('prev is ', prevPeople)
-                console.log('people is ', people)
+               // console.log('prev is ', prevPeople)
+               // console.log('people is ', people)
             })
     }, [])
 
@@ -27,7 +32,7 @@ function FormSubmit() {
   
 
     const handleSubmit = (e) => {
-       // e.preventDefault()  // this prevents the form from resetting after a submit
+       e.preventDefault()  // this prevents the form from resetting after a submit
         
 
         const sendOut = {name}
@@ -49,14 +54,10 @@ function FormSubmit() {
             })
         })
 
+        //make it biggerrrr
+        setFontSize(fontSize + 5)
+        console.log(fontSize)
 
-    }
-
-    //incrementer for making every next thing bigger.
-    const [incrementer, setIncrementer] = useState(1)
-    const toggleFunc = () => {
-        setIncrementer(V => V + 1)
-        console.log(incrementer)
     }
 
     return (
@@ -64,7 +65,7 @@ function FormSubmit() {
             <TierList people={people}/>
 
             <div class="text-center">
-                <PeopleList people={people} toggle={incrementer} prevPeople={prevPeople}/>
+                <PeopleList people={people} prevPeople={prevPeople} fontSize={fontSize}/>
                 
 
 
@@ -82,8 +83,8 @@ function FormSubmit() {
                         onChange={(e) => setName(e.target.value)} // sets name to whatever we type as we type it
                     ></input>
                     <br></br>
-                    <button class="bg-orange-800 rounded" onClick={toggleFunc}>Submit</button>
-                    <p>{name}</p>
+                    <button class="bg-orange-800 rounded">Submit</button>
+                    
                 </form>
 
 
