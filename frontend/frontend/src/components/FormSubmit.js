@@ -1,13 +1,14 @@
-import React from "react";
-import {useState, useEffect } from 'react'
+import {useState, useEffect, useCallback } from 'react'
 import PeopleList from "./PeopleList"
 import TierList from "./TierList"
 
 function FormSubmit() {
     
     const [people, setPeople] = useState([])
-    const [prevPeople, setPrevPeople] = useState([])
-
+    
+    const [name, setName] = useState('')
+    const [fontSize, setFontSize] = useState(16)
+  
     useEffect(() => {  // this is how you make a proper get request
         fetch('http://localhost:8000/people')
             .then(res => {
@@ -15,47 +16,37 @@ function FormSubmit() {
             })
             .then((data) => {   //converting it also takes some time and so that also gives you a promise, hence the second .then. the data is the actual data you finally end up using.
                 setPeople(data)
-                setPrevPeople(data)
-                // console.log('prev is ', prevPeople)
                 // console.log('people is ', people)
             })
     }, [])
 
 
-    const [name, setName] = useState('')
+    const handleSubmit = useCallback( (e) => {
+            e.preventDefault()  // this prevents the form from resetting after a submit
+            
 
-    const [fontSize, setFontSize] = useState(16)
-  
+            const sendOut = {name}
 
-    const handleSubmit = (e) => {
-        e.preventDefault()  // this prevents the form from resetting after a submit
-        
-
-        const sendOut = {name}
-
-        fetch('http://localhost:8000/people', {
-            method: 'POST',
-            headers: {"Content-Type": "application/json" }, // You need to add this to a post request to specify the type of info being posted.
-            body: JSON.stringify(sendOut)
-        })
-        .then(() => {
-            fetch('http://localhost:8000/people')
-            .then(res => {
-                return res.json()  
+            fetch('http://localhost:8000/people', {
+                method: 'POST',
+                headers: {"Content-Type": "application/json" }, // You need to add this to a post request to specify the type of info being posted.
+                body: JSON.stringify(sendOut)
             })
-            .then((data) => {   
-                setPrevPeople(people)
-                console.log(data)
-                setPeople(data)
+            .then(() => {
+                fetch('http://localhost:8000/people')
+                .then(res => res.json())
+                .then((data) => {   
+                    console.log(data)
+                    setPeople(data)
+                })
             })
-        })
 
-        //make it biggerrrr give it confetterrr
-        setFontSize(fontSize + 5)
-        console.log(fontSize)
+            //make it biggerrrr give it confetterrr
+            setFontSize(fontSize + 5)
+            console.log(fontSize)
 
 
-    }
+        }, [name, fontSize, setPeople, setFontSize])
 
 
 
@@ -63,8 +54,8 @@ function FormSubmit() {
         <div>
             <TierList people={people}/>
 
-            <div class="text-center">
-            <PeopleList people={people} prevPeople={prevPeople} fontSize={fontSize}/>
+            <div className="text-center">
+            <PeopleList people={people} fontSize={fontSize}/>
 
 
                 <form className="fixed bottom-0 text-center inset-x-0 m-60 bg-gray-600" onSubmit={handleSubmit}>
@@ -77,10 +68,13 @@ function FormSubmit() {
                         type="text" 
                         required
                         value={name}
-                        onChange={(e) => setName(e.target.value)} // sets name to whatever we type as we type it
+                        onChange={(e) => {
+                            console.log('checking input: ', e.target.value)
+                            setName(e.target.value)
+                        }} // sets name to whatever we type as we type it
                     ></input>
                     <br></br>
-                    <button class="bg-orange-800 rounded">Submit</button>
+                    <button className="bg-orange-800 rounded">Submit</button>
                 </form>
 
                 
