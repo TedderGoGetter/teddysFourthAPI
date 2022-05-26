@@ -58,7 +58,7 @@ function FormSubmit() {
             <PeopleList people={people} fontSize={fontSize}/>
 
 
-                <form className="fixed bottom-0 text-center inset-x-0 m-60 bg-gray-600" onSubmit={handleSubmit}>
+                <form className="" onSubmit={handleSubmit}>
                     <br></br>
                     <label>Is there someone even more awesome?</label>
 
@@ -74,7 +74,7 @@ function FormSubmit() {
                         }} // sets name to whatever we type as we type it
                     ></input>
                     <br></br>
-                    <button className="bg-orange-800 rounded">Submit</button>
+                    <button className="">Submit</button>
                 </form>
 
                 

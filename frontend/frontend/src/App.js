@@ -2,7 +2,7 @@ import FormSubmit from './components/FormSubmit';
 
 function App() {
   return (
-    <div className="w-screen h-screen bg-orange-300">
+    <div className="">
       <header className="App-header">
         <FormSubmit />
 
