@@ -1,8 +1,8 @@
-import FormSubmit from './components/FormSubmit';
+import FormSubmit from './components/FormSubmit'
 
 function App() {
   return (
-    <div className="">
+    <div >
       <header className="App-header">
         <FormSubmit />
 

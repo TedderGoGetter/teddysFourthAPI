@@ -1,13 +1,15 @@
 import {useState, useEffect, useCallback } from 'react'
 import PeopleList from "./PeopleList"
 import TierList from "./TierList"
+import Logo from "../images/howcoolru.png"
 
 function FormSubmit() {
+
     
     const [people, setPeople] = useState([])
     
     const [name, setName] = useState('')
-    const [fontSize, setFontSize] = useState(16)
+    const [fontSize, setFontSize] = useState(25)
   
     useEffect(() => {  // this is how you make a proper get request
         fetch('http://localhost:8000/people')
@@ -43,7 +45,7 @@ function FormSubmit() {
 
             //make it biggerrrr give it confetterrr
             setFontSize(fontSize + 5)
-            console.log(fontSize)
+            //console.log(fontSize)
 
 
         }, [name, fontSize, setPeople, setFontSize])
@@ -51,20 +53,27 @@ function FormSubmit() {
 
 
     return (
-        <div>
-            <TierList people={people}/>
+        <div className="">
+            
+            <div className="top">
+                <img className="logo" src={Logo} alt="issa logo"/>
+                
+                <TierList people={people}/>
+            </div>
 
-            <div className="text-center">
-            <PeopleList people={people} fontSize={fontSize}/>
+            <div className="people-container">
+                <PeopleList className="people-list" people={people} fontSize={fontSize}/>
+            </div>
 
-
-                <form className="" onSubmit={handleSubmit}>
+            <div className="form-container">
+                <form className="form" onSubmit={handleSubmit}>
                     <br></br>
                     <label>Is there someone even more awesome?</label>
 
                     <br></br>
 
                     <input 
+                        className='input'
                         type="text" 
                         required
                         value={name}
@@ -74,14 +83,14 @@ function FormSubmit() {
                         }} // sets name to whatever we type as we type it
                     ></input>
                     <br></br>
-                    <button className="">Submit</button>
+                    <button className='submit'>Submit</button>
                 </form>
-
+            </div>
                 
 
 
 
-            </div>
+            
 
         </div>
 
