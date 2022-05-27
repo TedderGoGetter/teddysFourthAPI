@@ -68,7 +68,7 @@ function FormSubmit() {
             <div className="form-container">
                 <form className="form" onSubmit={handleSubmit}>
                     <br></br>
-                    <label>Is there someone even more awesome?</label>
+                    <label className="label">Is there someone even more awesome?</label>
 
                     <br></br>
 
