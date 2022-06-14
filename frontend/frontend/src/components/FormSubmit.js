@@ -12,7 +12,7 @@ function FormSubmit() {
     const [fontSize, setFontSize] = useState(25)
   
     useEffect(() => {  // this is how you make a proper get request
-        fetch('http://localhost:7000/')  // was originally localhost:8000/people
+        fetch('http://localhost:7000/get')  // was originally localhost:8000/people
             .then(res => {
                 return res.json()  //you have to do something with the response, in thise case you turn it from a json object into a java one with the res.json
             })
@@ -24,19 +24,19 @@ function FormSubmit() {
     }, [])
 
 
-    const handleSubmit = useCallback( (e) => {
+    const handleSubmit = useCallback( (e) => {  //and here's my post request
             e.preventDefault()  // this prevents the form from resetting after a submit
             
 
             const sendOut = {name}
 
-            fetch('http://localhost:8000/people', {
+            fetch('http://localhost:7000/post', {
                 method: 'POST',
                 headers: {"Content-Type": "application/json" }, // You need to add this to a post request to specify the type of info being posted.
                 body: JSON.stringify(sendOut)
             })
             .then(() => {
-                fetch('http://localhost:8000/people')
+                fetch('http://localhost:7000/post')
                 .then(res => res.json())
                 .then((data) => {   
                     console.log(data)
