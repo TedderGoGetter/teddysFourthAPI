@@ -12,12 +12,13 @@ function FormSubmit() {
     const [fontSize, setFontSize] = useState(25)
   
     useEffect(() => {  // this is how you make a proper get request
-        fetch('http://localhost:8000/people')
+        fetch('http://localhost:7000/')  // was originally localhost:8000/people
             .then(res => {
                 return res.json()  //you have to do something with the response, in thise case you turn it from a json object into a java one with the res.json
             })
             .then((data) => {   //converting it also takes some time and so that also gives you a promise, hence the second .then. the data is the actual data you finally end up using.
                 setPeople(data)
+                console.log(data)
                 // console.log('people is ', people)
             })
     }, [])
@@ -43,10 +44,8 @@ function FormSubmit() {
                 })
             })
 
-            //make it biggerrrr give it confetterrr
+            //Iterator for making the text bigger
             setFontSize(fontSize + 5)
-            //console.log(fontSize)
-
 
         }, [name, fontSize, setPeople, setFontSize])
 
@@ -86,16 +85,7 @@ function FormSubmit() {
                     <button className='submit'>Submit</button>
                 </form>
             </div>
-                
-
-
-
-            
-
-        </div>
-
-        
-        
+        </div>  
     )
 }
 
