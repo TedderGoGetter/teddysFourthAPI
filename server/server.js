@@ -40,7 +40,7 @@ try {
 app.get("/get", async(req,res) => {
     try {
 
-        const allPeople = await pool.query("SELECT * FROM PEOPLE")  //Don't we just need Name?
+        const allPeople = await pool.query("SELECT * FROM people")
         res.json(allPeople.rows)
 
     } catch (err) {
@@ -52,8 +52,12 @@ app.get("/get", async(req,res) => {
 app.delete("/reset", async(req,res) => {
     try {
         const getReset = await pool.query("DELETE FROM people WHERE id != 1")
+
+
+        const allPeople = await pool.query("SELECT * FROM people")
         
-        res.json("Database was reset!") //do I even need this?
+        res.json(allPeople.rows)
+        
     } catch (err) {
         console.error(err.message)
     }

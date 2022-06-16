@@ -12,14 +12,13 @@ function FormSubmit() {
     const [fontSize, setFontSize] = useState(25)
   
     useEffect(() => {  // this is how you make a proper get request
-        fetch('http://localhost:7000/get')  // was originally localhost:8000/people
+        fetch('http://localhost:7000/get')  
             .then(res => {
                 return res.json()  //you have to do something with the response, in thise case you turn it from a json object into a java one with the res.json
             })
             .then((data) => {   //converting it also takes some time and so that also gives you a promise, hence the second .then. the data is the actual data you finally end up using.
-                console.log('get request data:', data)
+                // console.log('get request data:', data)
                 setPeople(data)
-                //console.log(data)
                 // console.log('people is ', people)
             })
     }, [])
@@ -49,20 +48,31 @@ function FormSubmit() {
                 console.log(people)
                 setPeople([...people, data])  //this is how you add an array element with useState! Yay
             })
-
-            //the old way
-              /*  fetch('http://localhost:7000/post')
-                .then(res => res.json())
-                .then((data) => {   
-                    console.log("this is what people will be set to",data)
-                    setPeople(data)
-                }) */
             
 
             //Iterator for making the text bigger
             setFontSize(fontSize + 5)
 
-        }, [people, name, fontSize, setPeople, setFontSize])
+        }, [people, name, fontSize, setPeople, setFontSize]
+    )
+
+    //the reset button. Use the response to update state. Or a shallow delete on the frontend that mirrors what the backend is doing.
+    const onReset = () => {
+        console.log('onReset was called')
+        fetch('http://localhost:7000/reset',
+
+        {method: 'DELETE'}
+        )
+        
+        .then((res) =>{               
+            return res.json()
+        })
+        .then((data) => {
+            console.log("what res from reset is", data)
+            setPeople(data) 
+        })
+        
+    }
 
 
 
@@ -99,6 +109,10 @@ function FormSubmit() {
                     <br></br>
                     <button className='submit'>Submit</button>
                 </form>
+
+
+                <button className="reset" onClick={onReset}>Reset</button>
+
             </div>
         </div>  
     )

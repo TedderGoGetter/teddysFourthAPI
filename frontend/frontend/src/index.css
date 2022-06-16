@@ -132,6 +132,32 @@ body {
     
 }
 
+.reset {
+
+    position:fixed;
+    margin: 270px 5px 30px 25px;
+    left: 0;
+    text-align: center;
+    bottom: 2%;
+
+    background-color: #ceeefe;
+    border: none;
+    color: #3e3e3e;
+    font-size: 16px;
+    cursor: pointer;
+    text-decoration: none;
+
+
+}
+
+.reset:hover {
+    background-color: #f92e00;
+    color: white;
+    font-size: 17px;
+    animation:shake 0.2s;
+    
+}
+
 /* Animations */
 @keyframes shake {
     0% { transform: translate(1px, 1px) rotate(0deg); }
