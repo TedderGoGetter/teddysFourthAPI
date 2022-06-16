@@ -3,7 +3,6 @@ const PeopleList = ({people, fontSize}) => {
 
 
     return (
-
         <div>
             {people && people.map((person, i) => (
                 <div key={person.id} className="people-text" style={{fontSize: `${fontSize}px`}}>
@@ -12,7 +11,6 @@ const PeopleList = ({people, fontSize}) => {
             ))}
             
         </div> 
-
     )
 
 }
